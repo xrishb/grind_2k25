@@ -1,0 +1,144 @@
+/* flexbox
+   is a one-dimensional css layout model for arranging items in rows and columns.
+*/
+* {
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.item {
+   background-color: cadetblue;
+   min-width: 5vw;
+   height: 5vh;
+   font-size: 1.5em;
+   text-align: center;
+   border: 4px solid black;
+
+   /* center the numbers */
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+
+   flex-shrink: 1;
+
+   /* flexbox properties */
+
+   /* flex-grow: decides whether the elements should flow the main axis or not, if 1 the element grows, 0 is default so elements wont grow. 
+
+   if 1, then all the elements will try to fill up the space inside the parent element in their main axis.
+
+   the higher the value, the faster the element will grow.
+   */
+   /* flex-grow: 1; */
+
+}
+
+.container {
+   /* creates main and cross axis in the container */
+   display: flex; 
+   /* to manipulate main axis ---------> */
+   /* center, places elements at the center of the main axis */
+   justify-content: center;
+   /* justify-content: flex-start ; default, elements placed at the start.*/
+   /* justify-content: flex-end; places element at the end of the axis */
+
+   /* create a border to see our flex box */
+   border: 5px solid black;
+   min-height: 25vh;
+
+   /* now we can visualize manipulating items at cross axis */
+   /* places the content at the center of the cross axis */
+   align-items: center;
+
+   
+   /* align-items: flex-start; aligns the content at the start */
+   /* align-items: flex-end; align items at the bottom of the cross axis */
+
+   /* width: 80vw; */
+
+   /* gap: puts the space between the elements, alternative to margins */
+   /* gap: 2vw; */
+   /* if there is no space we can make the remaining elements to flow into new line.
+
+   if the elements flows into new line, the have their own main axis and cross axis.
+   */
+   flex-wrap: wrap;
+
+
+   /* align content controls the individiual elements in cross axis */
+   align-content: space-evenly;
+
+   /* row gap and column gap can let add space between elements in row and column */
+   row-gap: 2vw;
+   column-gap: 2vh;
+
+   /* flex-shrink : 1 is default,  the elements shrink according to the screensize, if 0, then it wont shrine and may overlap border, its applied on the container items and not the main container. useful for fixed dimensions */
+}
+
+
+/* single element properties */
+#one {
+   background-color: brown;
+   /* take the newly available space in main axis */
+   flex-grow: 0.5;
+   /* now flex-shrink will work? but why i need to know */
+   flex-shrink: 0 ; 
+
+   /* align-self works in cross axis for individual elements */
+   align-self: flex-end;
+
+   /* margin-right: auto???? what does this do
+   
+      okay so, in containers 
+      margin-left: auto
+      margin-right: auto
+
+      takes up all the free space in the main axis. we did margin right auto, so the elements are pushed to the end of the main axis and the element is placed at the start.
+
+      useful for navbar layouts
+      toolbars
+   */
+   margin-right: auto;
+}
+
+
+
+/* lets play with different flexbox values */
+.container-two {
+   margin-top: 2vh;
+   border: 5px solid black;
+   min-height: 25vh;
+
+   display: flex;
+
+   /* puts space between the elements only */
+   /* justify-content:space-between; */
+
+   /* puts the space around the element, but space isnt equal */
+   /* justify-content: space-around; */
+
+   /* puts the space evenly between and outside of the elements in the main axis */
+   justify-content: space-evenly;
+}
+
+/* flex-direction: controls the main axis direction, default is row which goes from left to right */
+
+.container-three {
+   border:5px solid black;
+   margin-top: 2vh;
+   min-height: 25vh;
+   display: flex;
+
+   /* flex direction */
+   /* elements will start in reverse order from the end of the main axis */
+   /* flex-direction: row-reverse; */
+
+   /* elements placed in column, so now cross axis and main axis goes to the same direction?
+   
+   column-reverse starts the element from the bottom of the main axis
+   */
+   flex-direction: column;
+
+   align-items: center;
+   justify-content: space-between;
+}
