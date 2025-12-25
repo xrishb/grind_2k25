@@ -98,6 +98,43 @@ Node* deleteAtEnd(struct Node* temp) {
 }
 
 
+// delete at a given position (targetList, position)
+// position is zero-based: pos == 0 deletes the head
+Node* deleteAtPos(struct Node* temp, int pos) {
+   // empty list or invalid position
+   if(temp == nullptr) {
+      return nullptr;
+   }
+
+   if(pos <= 0) {
+      // delete the first element
+      struct Node* toDelete = temp;
+      temp = temp->next;
+      delete toDelete;
+      return temp;
+   }
+
+   // traverse to node just before the one to delete
+   struct Node* p = temp;
+   int i = 0;
+   while(i < pos - 1 && p->next != nullptr) {
+      p = p->next;
+      i++;
+   }
+
+   // if there's no node at position pos, do nothing
+   if(p->next == nullptr) {
+      return temp;
+   }
+
+   // remove p->next
+   struct Node* toDelete = p->next;
+   p->next = toDelete->next;
+   delete toDelete;
+   return temp;
+}
+
+
 // insert at the end of the list (data, targetList)
 Node* insertAtEnd(string data, struct Node* temp) {
    struct Node* ptr = new Node;
