@@ -71,6 +71,33 @@ Node* deleteAtBegin(struct Node* temp) {
 }
 
 
+// delete at the end of the list (targetList)
+Node* deleteAtEnd(struct Node* temp) {
+   // empty list
+   if(temp == nullptr) {
+      return nullptr;
+   }
+
+   // single element list
+   if(temp->next == nullptr) {
+      delete temp;
+      return nullptr;
+   }
+
+   // traverse to the penultimate node
+   struct Node* p = temp;
+   while(p->next->next != nullptr) {
+      p = p->next;
+   }
+
+   // p->next is the last node
+   struct Node* toDelete = p->next;
+   p->next = nullptr;
+   delete toDelete;
+   return temp;
+}
+
+
 // insert at the end of the list (data, targetList)
 Node* insertAtEnd(string data, struct Node* temp) {
    struct Node* ptr = new Node;
