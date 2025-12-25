@@ -79,6 +79,37 @@ Node* insertAtEnd(string data, struct Node* temp) {
 }
 
 
+// insert at a given position (data, targetList, position)
+// position is zero-based: pos == 0 inserts at beginning
+Node* insertAtPos(string data, struct Node* temp, int pos) {
+   struct Node* ptr = new Node;
+   ptr->data = data;
+   ptr->next = nullptr;
+
+   // insert at beginning for empty list or non-positive positions
+   if(pos <= 0 || temp == nullptr) {
+      if(temp == nullptr) {
+         return ptr;
+      }
+      ptr->next = temp;
+      return ptr;
+   }
+
+   // traverse to node just before the desired position
+   struct Node* p = temp;
+   int i = 0;
+   while(i < pos - 1 && p->next != nullptr) {
+      p = p->next;
+      i++;
+   }
+
+   // insert the new node after p
+   ptr->next = p->next;
+   p->next = ptr;
+   return temp;
+}
+
+
 
 int main() {
    // create a node and allocate it memory using `new`
