@@ -241,6 +241,20 @@ Node* sortList(struct Node* head) {
 }
 
 
+// selection sort for singly linked list (swaps node data)
+Node* selectionSort(struct Node* head) {
+   if(head == nullptr || head->next == nullptr) return head;
+   for(Node* i = head; i != nullptr; i = i->next) {
+      Node* minNode = i;
+      for(Node* j = i->next; j != nullptr; j = j->next) {
+         if(j->data < minNode->data) minNode = j;
+      }
+      if(minNode != i) swap(i->data, minNode->data);
+   }
+   return head;
+}
+
+
 
 int main() {
    // create a node and allocate it memory using `new`
@@ -269,8 +283,8 @@ int main() {
    traverseList(item1);
 
    cout << endl;
-   // simple sort : sort the list and print
-   item1 = sortList(item1);
+      // selection sort demo: sort the list and print
+      item1 = selectionSort(item1);
    traverseList(item1);
 
    cout << endl;
