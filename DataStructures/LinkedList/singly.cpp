@@ -206,6 +206,22 @@ Node* reverseList(struct Node* head) {
 }
 
 
+// detect cycle in a singly linked list using Floyd's algorithm
+bool hasCycle(struct Node* head) {
+   if(head == nullptr) return false;
+   Node* slow = head;
+   Node* fast = head;
+
+   while(fast != nullptr && fast->next != nullptr) {
+      slow = slow->next;
+      fast = fast->next->next;
+      if(slow == fast) return true;
+   }
+
+   return false;
+}
+
+
 
 int main() {
    // create a node and allocate it memory using `new`
@@ -237,6 +253,17 @@ int main() {
    // reverse the list and print
    item1 = reverseList(item1);
    traverseList(item1);
+
+   cout << endl;
+   // create a temporary cycle for demo: connect tail->next to head
+   Node* tail = item1;
+   while(tail->next != nullptr) tail = tail->next;
+   tail->next = item1; // create cycle
+
+   cout << "Has cycle: " << (hasCycle(item1) ? "Yes" : "No") << endl;
+
+   // break cycle so program can cleanup
+   tail->next = nullptr;
 
    cout << endl;
 
