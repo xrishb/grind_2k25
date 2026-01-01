@@ -47,11 +47,15 @@ showMessage("rishab","js sucks");
 
 
 
-// function expression: allows to create a function in the middle of an expression
+// function expression/anonymous functions: allows to create a function in the middle of an expression
+// they are used as quickly assigning some values to a variable, useful in callback functions
 let sum =  function () {
    return a+b; 
 }; // healthy practice to put it at the end of the the }
 console.log(sum());
+
+
+
 
 /* callback functions
    a function passed as an argument to another function then executed later.
@@ -72,43 +76,14 @@ greetUser('rishbh', goodbye);
 
 
 /*
-Arrow functions are a shorter syntax for writing functions in JavaScript.
-They are commonly used for cleaner, more readable code, especially with
-callbacks and functional programming patterns.
-*/
+arrow functions: assigning anonymous functions to a variable, an arrow function returns a value implicitly, means i dont have to use return keyword, if the value is directly after the arrow, but if we have a curly bracket, we must return explicitly.
 
-/*
-BASIC SYNTAX:
-(parameters) => expression
-If there is only ONE expression, it is returned implicitly.
+these functions are always anonymous
 */
-const add = (a, b) => a + b;
+const sumThree = (a, b, c) => a+b+c; 
+console.log(sumThree(5,5,5));
 
-/*
-EXPLICIT RETURN:
-If you use curly braces {}, you MUST use the `return` keyword.
-*/
-const multiply = (a, b) => {
-  return a * b;
-};
-
-/*
-SINGLE PARAMETER:
-Parentheses can be omitted if there is only one parameter.
-*/
-const square = x => x * x;
-
-/*
-NO PARAMETERS:
-Parentheses are required if there are no parameters.
-*/
-const greet = () => "Hello, world!";
-
-/*
-MULTI-LINE FUNCTION BODY:
-Useful for more complex logic.
-*/
-const calculateArea = (width, height) => {
-  const area = width * height;
-  return area;
-};
+const sayHi = () => {
+   console.log('hi');
+}
+sayHi();
