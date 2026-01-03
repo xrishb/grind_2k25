@@ -65,3 +65,77 @@ for(let i = 0; i < tagelements.length; i++) {
 // NodeList: returned by some new apis can be static or live may include non elements
 // the difference matters for performance
 
+// modern selectors
+
+// querySelector: returns the first matching index or null, uses css selector syntax, static, can be called on any element
+
+const p2 = document.querySelector('.p2');
+p2.style.color = 'red';
+
+// querySelectorAll: returns NodeList, static snapshot of matches, order matches document order, if the dom changes later the list is not changed thats why its preferred
+
+// some common css selectors
+// "#id"
+// ".class"
+// "div > p"
+// "ul li.active"
+// "input[type='text']"
+// "[data-role='admin']"
+
+// scoped queries improves performance
+const container = document.querySelector('.container');
+const list2 = container.querySelectorAll('.list2');
+
+// reading and modifying content
+// textContent = the raw text of elements, ignores css
+for(let i = 0; i < list2.length; i++) {
+   list2[i].textContent = "list items modified via js access";
+}
+
+const p3 = document.querySelector('.p3');
+// innerText = rendered text ingores css slower
+p3.innerText = "hello wolrd";
+
+const p4 = document.querySelector('.p4');
+p4.innerHTML = "<strong>Hello</strong>"; // parses string as html, executes html, risky user input injected directly can execute scripts
+
+
+// attribute = inital state, property = current state
+const input = document.querySelector('#x');
+input.getAttribute("id");
+input.setAttribute("title", "info");
+input.removeAttribute("hidden");
+
+// styling
+// property names are camelCase and values are strings, it only effects that element
+
+console.log(getComputedStyle(input));
+
+// css variables via dom. useful for theme toggling, scales cleanly
+document.documentElement.style.setProperty("--primary", 'blue');
+
+// does not work if its in css file
+document.body.style.removeProperty("background-color"); // does not effect as css is not inline but rather in a stylesheet
+
+// class manipulation, how state is represented in dom
+// a class is space-separated token list exposed as live api in js
+
+console.log(p4.className);
+// className is a string,  is dangerous as it removes all existing classes, it causes ui breaks
+
+// classList - token interface its a DOMTokenList not a string, its a read only property
+// it understands- tokens, uniqueness, ordering
+
+// core operations
+// add()
+p4.classList.add('paragraph'); // adds a token to the list, ommits if exists already
+
+// remove() a token
+p4.classList.remove('paragraph');
+
+// contains(): check for a token if it exists
+let isPresent = p4.classList.contains('paragraph');
+console.log(isPresent);
+
+// toggle(): if its in the list, remove it, if not add it
+p4.classList.toggle('paragraph');
