@@ -6,17 +6,18 @@
     <title>dom events</title>
 </head>
 <body>
-    <!-- onClick event example from html -->
-     <input type="button" name="" id="" value="click me" onclick="alert('button is clicked!')"> 
-     <!-- however writing such code in html itself is not efficient and is tedious, its better that we write such code in separate js source -->
-      <button id="btn1"">please click</button>
+    <input type="button" value="click me" onclick="alert('button is clicked!')"> 
+    <button id="btn1">please click</button> <button class="btn2">click</button>
+    <button class="btn3">click me (Shift + Click)</button>
+    
+    <div id="parent" style="padding: 20px; background: #eee;">
+        Parent (Delegation Example)
+        <button class="child">Child 1</button>
+        <button class="child">Child 2</button>
+    </div>
 
-
-      <button class="btn2">click</button>
-      <p class="info"></p>
-
-
-      
+    <p class="info" style="border: 1px solid black; padding: 10px; white-space: pre-line;"></p>
+    
     <script src="events.js" defer></script>
 </body>
 </html>
